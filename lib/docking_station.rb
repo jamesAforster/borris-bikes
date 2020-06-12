@@ -10,12 +10,16 @@ class DockingStation
   end
 
   def release_bike
+    if @docked_bikes.length > 0
+      @docked_bikes[0]
+      @docked_bikes.pop
+  
+    end
     #if docked_bikes.empty?
     # => puts "sorry pal no bikes to be had"
     #else
     # => @docked_bikes[-1]
     # => pop @docked_bikes
-    Bike.new
     #"Bike Released"
   end
 

@@ -3,6 +3,7 @@ require 'docking_station'
 describe DockingStation do
   let (:bike) {Bike.new}
   let (:docking_station) {DockingStation.new}
+  
   describe 'initialize' do
     it 'can be created with a certain number of bikes' do
       expect(docking_station).to be_an_instance_of DockingStation
@@ -20,9 +21,13 @@ describe DockingStation do
     end
 
     #Test 1 - docking station empty
-    expect { raise docking_station.release_bike}
-    #expect { raise StandardError }.to raise_error
+    it "will raise an error if you try to take a bike that isn't there" do
+      expect { raise docking_station.release_bike}.to raise_error()
+    end
 
+    #There will be an error if you try to release a bike when docked_bike.length is equal to 0
+    #expect { raise StandardError }.to raise_error
+    
     #Test 2 - docking station has a bike 4 u :)
   end
 
