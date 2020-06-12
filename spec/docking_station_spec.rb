@@ -2,7 +2,7 @@ require 'docking_station'
 
 describe DockingStation do
   let (:bike) {Bike.new}
-  
+
   describe 'initialize' do
     it 'is an instance of DockingStation' do
       expect(subject).to be_an_instance_of DockingStation
@@ -34,18 +34,16 @@ describe DockingStation do
       expect(subject.docked_bikes.length).to eq(0)
     end
   end
-  
+
   describe "#dock_bike(bike)" do
+    it "will not allow a bike to be docked if there are already 20 bikes docked" do
+    20.times { subject.dock_bike(Bike.new)}
+    expect { raise subject.dock_bike(bike)}.to raise_error(RuntimeError)
+    end
 
     it "docks a bike into the docking_station instance" do
       subject.dock_bike(bike)
       expect(subject.docked_bikes).to include(bike)
-    end
-
-    it "will not dock a bike if there is a bike docked already" do
-      bike2 = Bike.new
-      subject.dock_bike(bike)
-      expect { raise subject.dock_bike(bike2)}.to raise_error(RuntimeError)
     end
 
   end
