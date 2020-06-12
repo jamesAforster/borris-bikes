@@ -11,9 +11,10 @@ class DockingStation
 
   def release_bike
     if @docked_bikes.length > 0
-      @docked_bikes[0]
+      @docked_bikes[-1]
       @docked_bikes.pop
-  
+    else
+      fail "No bikes found"
     end
     #if docked_bikes.empty?
     # => puts "sorry pal no bikes to be had"
@@ -25,7 +26,9 @@ class DockingStation
 
   def dock_bike(bike)
     #number of spaces
+    #Return if the number of bikes in docked_bikes is greater than 1
     @bike = bike
+    return fail "Docking station full" if @docked_bikes.length >= 1
     @docked_bikes.push(@bike)
   end
 
